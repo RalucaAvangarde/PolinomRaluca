@@ -9,14 +9,17 @@ public class PolinomScript : MonoBehaviour
 {
     public GameObject MyImage;
     public GameObject MyImage2;
+    public GameObject MyImageR;
     public GameObject Punct;
     public List<Vector2> PunctePeGrafic;
     public Transform ChartContainer;
     public Transform ChartContainer2;
+    public Transform ChartContainerR;
     public InputField FieldValue;
     public InputField FieldValue2;
     public InputField Value1;
     public InputField Value2;
+    public InputField ValueR;
     public Text MyText1;
     public Text MyText2;
     public Text RezultText;
@@ -148,9 +151,25 @@ public class PolinomScript : MonoBehaviour
         */
 
     }
+    // derivare rezultat final
     public void DerivareRezultat()
     {
         RezultText.text = rezultat.Derivare().ToString();
+    }
+    // valoare pt rezultat final
+    public void ValoareRezultat()
+    {
+        if (ValueR.text != null)
+        {
+            double result = Double.Parse(ValueR.text);
+            RezultText.text = rezultat.CalculeazaValoarea(result).ToString();
+            ValueR.gameObject.SetActive(false);
+        }
+    }
+    public void ShowValueR()
+    {
+        ValueR.gameObject.SetActive(true);
+
     }
     //activeaza input field pt a introduce valoare+ calcul polinom in punctul dat
     public void ShowValueP1()
@@ -163,7 +182,7 @@ public class PolinomScript : MonoBehaviour
     {
         if (Value1.text != null)
         {
-            int result = Int32.Parse(Value1.text);
+            double result = Double.Parse(Value1.text);
             RezultText.text = polinom1.CalculeazaValoarea(result).ToString();
             Debug.Log("Valoarea Polinomului1 in punctul dat este: " + polinom1.CalculeazaValoarea(result));
             Value1.gameObject.SetActive(false);
@@ -205,16 +224,16 @@ public class PolinomScript : MonoBehaviour
         MyImage2.gameObject.SetActive(true);
         polinom2.PlotChart(Punct, ChartContainer2);
     }
+    public void GraficR()
+    {
+        MyImageR.gameObject.SetActive(true);
+        rezultat.PlotChart(Punct, ChartContainerR);
+    }
     public void CloseGrafic()
     {
         MyImage.gameObject.SetActive(false);
-       
-    }
-    public void CloseGrafic2()
-    {
         MyImage2.gameObject.SetActive(false);
-
-     
-
+        MyImageR.gameObject.SetActive(false);
     }
+    
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using System;
 
-public class Polinom: MonoBehaviour
+public class Polinom : MonoBehaviour
 {
     public List<double> Coeficienti { get; set; }
     public int Grad { get; set; }
@@ -38,7 +38,7 @@ public class Polinom: MonoBehaviour
             else if (i == 0)
             {
                 result += (sign + Coeficienti[i]);
-               
+
             }
 
         }
@@ -161,15 +161,21 @@ public class Polinom: MonoBehaviour
     //derivare (x^n)' = n*x^n-1
     public Polinom Derivare()
     {
-        var coeficientiRezultat = new double[Grad];
-
-        for (int i = 1; i <= Grad; i++)
+        var coeficientiRezultat = new double[Grad +1];
+        if (Grad >= 1)
         {
 
-            coeficientiRezultat[i - 1] = (i) * Coeficienti[i];
+            for (int i = 1; i <= Grad; i++)
+            {
 
+                coeficientiRezultat[i - 1] = (i) * Coeficienti[i];
+
+            }
         }
-
+        else
+        {
+            coeficientiRezultat[0] = 0;
+        }
         return new Polinom(coeficientiRezultat.ToList());
     }
 
@@ -205,19 +211,19 @@ public class Polinom: MonoBehaviour
     public void PlotChart(GameObject point, Transform chartContainer)
     {
         List<Vector2> PunctePeGrafic = new List<Vector2>();
-        for (float i = -10; i <= 10; i += 0.05f)
+        for (float i = -10; i <= 10; i += 0.1f)
         {
             var temp = new Vector2();
             temp.x = i;
             temp.y = temp.y = Mathf.Clamp((float)CalculeazaValoarea(i), -10, 10);
             PunctePeGrafic.Add(temp);
-            
+
         }
         //PunctePeGrafic.Clear();
         foreach (var item in PunctePeGrafic)
         {
             Instantiate(point, new Vector2(item.x, item.y), Quaternion.identity, chartContainer);
         }
-       
+
     }
 }
