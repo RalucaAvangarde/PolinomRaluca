@@ -32,11 +32,13 @@ public class Polinom: MonoBehaviour
             var sign = Coeficienti[i] >= 0 ? "+" : "";
             if (Coeficienti[i] != 0 && i != 0)
             {
-                result += $"{sign}{Coeficienti[i]}X^{i}";
+                result += (sign + Coeficienti[i] + "X^" + i);
+
             }
             else if (i == 0)
             {
-                result += $"{sign}{Coeficienti[i]}";
+                result += (sign + Coeficienti[i]);
+               
             }
 
         }
