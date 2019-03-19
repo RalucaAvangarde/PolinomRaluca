@@ -211,7 +211,7 @@ public class Polinom : MonoBehaviour
     public void PlotChart(GameObject point, Transform chartContainer)
     {
         List<Vector2> PunctePeGrafic = new List<Vector2>();
-        for (float i = -10; i <= 10; i += 0.1f)
+        for (float i = -10; i <= 10; i += 0.02f)
         {
             var temp = new Vector2();
             temp.x = i;
@@ -219,7 +219,6 @@ public class Polinom : MonoBehaviour
             PunctePeGrafic.Add(temp);
 
         }
-        //PunctePeGrafic.Clear();
         foreach (var item in PunctePeGrafic)
         {
             Instantiate(point, new Vector2(item.x, item.y), Quaternion.identity, chartContainer);
