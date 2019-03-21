@@ -145,7 +145,6 @@ public class PolinomScript : MonoBehaviour
     {
         rezultat = polinom1.Derivare();
         rezultText.text = rezultat.ToString();
-        //Debug.Log("Derivare: " + (polinom1.Derivare()));
     }
     public void ShowDerivareP2()
     {

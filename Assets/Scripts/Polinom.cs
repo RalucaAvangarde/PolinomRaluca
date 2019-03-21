@@ -50,11 +50,11 @@ public class Polinom
             {
                 result += (sign + Coeficienti[i] + "X");
             }
-            else if (Coeficienti[i] == 1 && i != 1)          //if coeficient of grad bigger than 1, is one, don`t write 1
+            else if (Coeficienti[i] == 1 && i != 1)                                 //if coeficient of grad bigger than 1, is one, don`t write 1
             {
                 result += (sign + "X^" + i);
             }
-            else if (i == 1 && Coeficienti[i] == 1)               // if grad = 1 and coeficient = 1  don`t write 1
+            else if (i == 1 && Coeficienti[i] == 1)                                 // if grad = 1 and coeficient = 1  don`t write 1
             {
                 result += (sign + "X");    
             }
