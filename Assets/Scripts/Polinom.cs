@@ -36,7 +36,7 @@ public class Polinom
             {
                 sign = "";
             }
-            if (Coeficienti[i] >1 && i > 1)
+            if (Coeficienti[i] !=0 && i != 0 &&(Coeficienti[i] != 1 && i != 1))
             {
                 result += (sign + Coeficienti[i] + "X^" + i);
 
@@ -46,7 +46,7 @@ public class Polinom
                 result += (sign + Coeficienti[i]);
 
             }
-            else if (i == 1 && Coeficienti[i] != 0 && Coeficienti[i] != 1)               // if grad = 1 and coeficient != 0 si 1,  write X not X^1
+            else if (i == 1 && Coeficienti[i] != 0 && Coeficienti[i] != 1)          // if grad = 1 and coeficient != 0 si 1,  write X not X^1
             {
                 result += (sign + Coeficienti[i] + "X");
             }

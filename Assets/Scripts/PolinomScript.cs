@@ -37,10 +37,13 @@ public class PolinomScript : MonoBehaviour
     private Polinom polinom1;
     private Polinom polinom2;
     private Polinom polinom;
-   
+    private bool check1;
+    private bool check2;
 
     void Start()
     {
+        check1 = false;
+        check2 = false;
         inputList = new List<double>();
         inputList2 = new List<double>();
         fieldValue = fieldValue.GetComponent<InputField>();
@@ -66,6 +69,7 @@ public class PolinomScript : MonoBehaviour
             inputList.Reverse();
             polinom1 = new Polinom(inputList);
             myText1.text = polinom1.ToString();
+            check1 = true;
             //FieldValue.text = ""; - clear the field
         }
         else
@@ -88,6 +92,7 @@ public class PolinomScript : MonoBehaviour
             inputList2.Reverse();
             polinom2 = new Polinom(inputList2);
             myText2.text = polinom2.ToString();
+            check2 = true;
         }
         else
         {
@@ -98,20 +103,41 @@ public class PolinomScript : MonoBehaviour
     //adunare
     public void ShowAdunare()
     {
-        rezultat = (polinom1 + polinom2);
-        rezultText.text = rezultat.ToString();
+        if (check1 && check2)
+        {
+            rezultat = (polinom1 + polinom2);
+            rezultText.text = rezultat.ToString();
+        }
+        else
+        {
+            Debug.Log("You need to have 2 polinomyals for this operation");
+        }
     }
     //scadere
     public void ShowScadere()
     {
-        rezultat = (polinom1 - polinom2);
-        rezultText.text = rezultat.ToString();
+        if (check1 && check2)
+        {
+            rezultat = (polinom1 - polinom2);
+            rezultText.text = rezultat.ToString();
+        }
+        else
+        {
+            Debug.Log("You need to have 2 polinomyals for this operation");
+        }
     }
     // inmultire
     public void ShowInmultire()
     {
-        rezultat = (polinom1 * polinom2);
-        rezultText.text = rezultat.ToString();
+        if (check1 && check2)
+        {
+            rezultat = (polinom1 * polinom2);
+            rezultText.text = rezultat.ToString();
+        }
+        else
+        {
+            Debug.Log("You need to have 2 polinomyals for this operation");
+        }
 
     }
     //derivare
@@ -131,6 +157,7 @@ public class PolinomScript : MonoBehaviour
     {
         rezultat = polinom1.Integrare();
         rezultText.text = rezultat.ToString();
+
     }
     public void ShowIntegrareP2()
     {
@@ -164,7 +191,7 @@ public class PolinomScript : MonoBehaviour
         valueR.gameObject.SetActive(true);
 
     }
- 
+
     public void ShowValueP1()
     {
         value1.gameObject.SetActive(true);
@@ -235,7 +262,7 @@ public class PolinomScript : MonoBehaviour
     //grafic function
     public void PlotChart(Polinom polinom)
     {
-        
+
         List<Vector2> PunctePeGrafic = new List<Vector2>();
         for (float i = -10; i <= 10; i += 0.02f)
         {
@@ -243,7 +270,7 @@ public class PolinomScript : MonoBehaviour
             temp.x = i;
             temp.y = Mathf.Clamp((float)polinom.CalculeazaValoarea(i), -10, 10);
             PunctePeGrafic.Add(temp);
-            
+
         }
         foreach (var item in PunctePeGrafic)
         {
