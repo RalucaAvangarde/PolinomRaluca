@@ -7,57 +7,69 @@ using UnityEngine.UI;
 
 public class PolinomScript : MonoBehaviour
 {
-    public GameObject MyImage; 
-    public GameObject Punct;
+
     public List<Vector2> PunctePeGrafic;
-    public Transform ChartContainer;
-    public InputField FieldValue;
-    public InputField FieldValue2;
-    public InputField Value1;
-    public InputField Value2;
-    public InputField ValueR;
-    public Text MyText1;
-    public Text MyText2;
-    public Text RezultText;
+    [SerializeField]
+    private InputField fieldValue;
+    [SerializeField]
+    private InputField fieldValue2;
+    [SerializeField]
+    private InputField value1;
+    [SerializeField]
+    private InputField value2;
+    [SerializeField]
+    private InputField valueR;
+    [SerializeField]
+    private Text myText1;
+    [SerializeField]
+    private Text myText2;
+    [SerializeField]
+    private Text rezultText;
+    [SerializeField]
+    private GameObject myImage;
+    [SerializeField]
+    private GameObject punct;
+    [SerializeField]
+    private Transform chartContainer;
     private List<double> inputList;
     private List<double> inputList2;
     private Polinom rezultat;
     private Polinom polinom1;
     private Polinom polinom2;
-
+    private Polinom polinom;
+   
 
     void Start()
     {
         inputList = new List<double>();
         inputList2 = new List<double>();
-        FieldValue = FieldValue.GetComponent<InputField>();
-        FieldValue2 = FieldValue2.GetComponent<InputField>();
-        Value1 = Value1.GetComponent<InputField>();
-        Value2 = Value2.GetComponent<InputField>();
-        //polinom1 = new Polinom(inputList);
-        //polinom2 = new Polinom(inputList2);
+        fieldValue = fieldValue.GetComponent<InputField>();
+        fieldValue2 = fieldValue2.GetComponent<InputField>();
+        value1 = value1.GetComponent<InputField>();
+        value2 = value2.GetComponent<InputField>();
     }
     private void Awake()
     {
-        MyText1 = MyText1.GetComponent<Text>();
-        MyText2 = MyText2.GetComponent<Text>();
-        RezultText = RezultText.GetComponent<Text>();
+        myText1 = myText1.GetComponent<Text>();
+        myText2 = myText2.GetComponent<Text>();
+        rezultText = rezultText.GetComponent<Text>();
 
     }
     public void ShowPolinom1()
     {
 
-        string str = FieldValue.text;
+        string str = fieldValue.text;
         if (str != null)
         {
             inputList.Clear();
             inputList = (str.Trim().Split(null)).Select(Double.Parse).ToList();
             inputList.Reverse();
             polinom1 = new Polinom(inputList);
-            MyText1.text = polinom1.ToString();
+            myText1.text = polinom1.ToString();
             //FieldValue.text = ""; - clear the field
         }
         else
+
         {
             Debug.Log("Incorrect format");
         }
@@ -67,7 +79,7 @@ public class PolinomScript : MonoBehaviour
 
     public void ShowPolinom2()
     {
-        string str2 = FieldValue2.text;
+        string str2 = fieldValue2.text;
 
         if (str2 != null)
         {
@@ -75,7 +87,7 @@ public class PolinomScript : MonoBehaviour
             inputList2 = (str2.Trim().Split(null)).Select(Double.Parse).ToList();
             inputList2.Reverse();
             polinom2 = new Polinom(inputList2);
-            MyText2.text = polinom2.ToString();
+            myText2.text = polinom2.ToString();
             //FieldValue2.text=""; //- clear the field
         }
         else
@@ -88,95 +100,88 @@ public class PolinomScript : MonoBehaviour
     public void ShowAdunare()
     {
         rezultat = (polinom1 + polinom2);
-        RezultText.text = rezultat.ToString();
+        rezultText.text = rezultat.ToString();
         // Debug.Log("Adunare: " + (polinom1 + polinom2));
     }
     //scadere
     public void ShowScadere()
     {
         rezultat = (polinom1 - polinom2);
-        RezultText.text = rezultat.ToString();
+        rezultText.text = rezultat.ToString();
     }
     // inmultire
     public void ShowInmultire()
     {
         rezultat = (polinom1 * polinom2);
-        RezultText.text = rezultat.ToString();
+        rezultText.text = rezultat.ToString();
 
     }
     //derivare
     public void ShowDerivareP1()
     {
         rezultat = polinom1.Derivare();
-        RezultText.text = rezultat.ToString();
+        rezultText.text = rezultat.ToString();
         //Debug.Log("Derivare: " + (polinom1.Derivare()));
     }
     public void ShowDerivareP2()
     {
         rezultat = polinom2.Derivare();
-        RezultText.text = rezultat.ToString();
-        //Debug.Log("Derivare: " + (polinom2.Derivare()));
+        rezultText.text = rezultat.ToString();
     }
     //integrare
     public void ShowIntegrareP1()
     {
         rezultat = polinom1.Integrare();
-        RezultText.text = rezultat.ToString();
-        Debug.Log("Integrare: " + (polinom1.Integrare()));
+        rezultText.text = rezultat.ToString();
+       // Debug.Log("Integrare: " + (polinom1.Integrare()));
     }
     public void ShowIntegrareP2()
     {
         rezultat = polinom2.Integrare();
-        RezultText.text = rezultat.ToString();
+        rezultText.text = rezultat.ToString();
     }
 
     // integrare rezultat final
     public void IntegrareRezultat()
     {
-        RezultText.text = rezultat.Integrare().ToString();
-        /*
-        if (RezultText.text ==(polinom1+polinom2).ToString())
-        {
-            RezultText.text = ((polinom1 + polinom2).Integrare()).ToString(); //integrare adunare
-        }
-        */
+        rezultText.text = rezultat.Integrare().ToString();
 
     }
     // derivare rezultat final
     public void DerivareRezultat()
     {
-        RezultText.text = rezultat.Derivare().ToString();
+        rezultText.text = rezultat.Derivare().ToString();
     }
     // valoare pt rezultat final
     public void ValoareRezultat()
     {
-        if (ValueR.text != null)
+        if (valueR.text != null)
         {
-            double result = Double.Parse(ValueR.text);
-            RezultText.text = rezultat.CalculeazaValoarea(result).ToString();
-            ValueR.gameObject.SetActive(false);
+            double result = Double.Parse(valueR.text);
+            rezultText.text = rezultat.CalculeazaValoarea(result).ToString();
+            valueR.gameObject.SetActive(false);
         }
     }
     public void ShowValueR()
     {
-        ValueR.gameObject.SetActive(true);
+        valueR.gameObject.SetActive(true);
 
     }
     //activeaza input field pt a introduce valoare+ calcul polinom in punctul dat
     public void ShowValueP1()
     {
-        Value1.gameObject.SetActive(true);
+        value1.gameObject.SetActive(true);
 
     }
 
     public void CalculWihValue1()
     {
-        if (Value1.text != null)
+        if (value1.text != null)
         {
-            double result = Double.Parse(Value1.text);
-            RezultText.text = polinom1.CalculeazaValoarea(result).ToString();
-            Debug.Log("Valoarea Polinomului1 in punctul dat este: " + polinom1.CalculeazaValoarea(result));
-            Value1.gameObject.SetActive(false);
+            double result = Double.Parse(value1.text);
+            rezultText.text = polinom1.CalculeazaValoarea(result).ToString();
+            value1.gameObject.SetActive(false);
+            //Debug.Log("Valoarea Polinomului1 in punctul dat este: " + polinom1.CalculeazaValoarea(result));
         }
         else
         {
@@ -186,46 +191,66 @@ public class PolinomScript : MonoBehaviour
 
     public void ShowValueP2()
     {
-        Value2.gameObject.SetActive(true);
+        value2.gameObject.SetActive(true);
 
     }
     public void CalculWihValue2()
     {
-        if (Value2.text != null)
+        if (value2.text != null)
         {
-            int result = Int32.Parse(Value2.text);
-            RezultText.text = polinom2.CalculeazaValoarea(result).ToString();
-            Value2.gameObject.SetActive(false);
+            int result = Int32.Parse(value2.text);
+            rezultText.text = polinom2.CalculeazaValoarea(result).ToString();
+            value2.gameObject.SetActive(false);
         }
         else
         {
             Debug.Log("Please insert a number!");
         }
     }
-
+    //Grafic
     public void GraficP1()
     {
-        MyImage.gameObject.SetActive(true);
-        polinom1.PlotChart(Punct, ChartContainer);
+        myImage.gameObject.SetActive(true);
+        PlotChart(polinom1);
     }
 
     public void GraficP2()
     {
-        MyImage.gameObject.SetActive(true);
-        polinom2.PlotChart(Punct, ChartContainer);
+        myImage.gameObject.SetActive(true);
+        PlotChart(polinom2);
+
     }
     public void GraficR()
     {
-        MyImage.gameObject.SetActive(true);
-        rezultat.PlotChart(Punct, ChartContainer);
+        myImage.gameObject.SetActive(true);
+        PlotChart(rezultat);
     }
     public void CloseGrafic()
     {
-        MyImage.gameObject.SetActive(false);
-        foreach (Transform child in ChartContainer.transform)
+        myImage.gameObject.SetActive(false);
+        foreach (Transform child in chartContainer.transform)
         {
             GameObject.Destroy(child.gameObject);
+        }
 
+    }
+
+    //grafic functions
+    public void PlotChart(Polinom polinom)
+    {
+        
+        List<Vector2> PunctePeGrafic = new List<Vector2>();
+        for (float i = -10; i <= 10; i += 0.02f)
+        {
+            var temp = new Vector2();
+            temp.x = i;
+            temp.y = Mathf.Clamp((float)polinom.CalculeazaValoarea(i), -10, 10);
+            PunctePeGrafic.Add(temp);
+            
+        }
+        foreach (var item in PunctePeGrafic)
+        {
+            Instantiate(punct, new Vector2(item.x, item.y), Quaternion.identity, chartContainer);
         }
 
     }

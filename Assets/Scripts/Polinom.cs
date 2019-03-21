@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using System;
 
-public class Polinom : MonoBehaviour
+public class Polinom
 {
     public List<double> Coeficienti { get; set; }
     public int Grad { get; set; }
-    private GameObject points;
 
     public Polinom(List<double> coeficienti)
     {
@@ -29,8 +27,16 @@ public class Polinom : MonoBehaviour
         var result = "";
         for (int i = Grad; i >= 0; i--)
         {
-            var sign = Coeficienti[i] >= 0 ? "+" : "";
-            if (Coeficienti[i] != 0 && i != 0)
+            var sign = "";
+            if (Coeficienti[i] >= 0)
+            {
+                sign = "+";
+            }
+            else
+            {
+                sign = "";
+            }
+            if (Coeficienti[i] >1 && i > 1)
             {
                 result += (sign + Coeficienti[i] + "X^" + i);
 
@@ -40,12 +46,25 @@ public class Polinom : MonoBehaviour
                 result += (sign + Coeficienti[i]);
 
             }
+            else if (i == 1 && Coeficienti[i] != 0 && Coeficienti[i] != 1)               // if grad = 1 and coeficient != 0 si 1,  write X not X^1
+            {
+                result += (sign + Coeficienti[i] + "X");
+            }
+            else if (Coeficienti[i] == 1 && i != 1)          //if coeficient of grad bigger than 1, is one, don`t write 1
+            {
+                result += (sign + "X^" + i);
+            }
+            else if (i == 1 && Coeficienti[i] == 1)               // if grad = 1 and coeficient = 1  don`t write 1
+            {
+                result += (sign + "X");    
+            }
+            
 
         }
         return result;
     }
 
-    public double CalculeazaValoarea(double punct)
+    public double CalculeazaValoarea(double punct) 
     {
         var val = 0d;
         for (int i = Grad; i >= 0; i--)
@@ -141,7 +160,7 @@ public class Polinom : MonoBehaviour
     //inmultire
     public static Polinom operator *(Polinom a, Polinom b)
     {
-        var maxGrad = a.Grad + b.Grad + 2;
+        var maxGrad = a.Grad + b.Grad + 2;                  //+2, for constants
         var coeficientiProdus = new double[maxGrad];
         var result = new Polinom();
 
@@ -161,7 +180,7 @@ public class Polinom : MonoBehaviour
     //derivare (x^n)' = n*x^n-1
     public Polinom Derivare()
     {
-        var coeficientiRezultat = new double[Grad +1];
+        var coeficientiRezultat = new double[Grad + 1];
         if (Grad >= 1)
         {
 
@@ -207,22 +226,4 @@ public class Polinom : MonoBehaviour
         return new Polinom(coeficientiRezultat.ToList());
     }
 
-    //grafic
-    public void PlotChart(GameObject point, Transform chartContainer)
-    {
-        List<Vector2> PunctePeGrafic = new List<Vector2>();
-        for (float i = -10; i <= 10; i += 0.02f)
-        {
-            var temp = new Vector2();
-            temp.x = i;
-            temp.y = temp.y = Mathf.Clamp((float)CalculeazaValoarea(i), -10, 10);
-            PunctePeGrafic.Add(temp);
-
-        }
-        foreach (var item in PunctePeGrafic)
-        {
-            Instantiate(point, new Vector2(item.x, item.y), Quaternion.identity, chartContainer);
-        }
-
-    }
 }
