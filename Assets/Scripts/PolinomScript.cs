@@ -88,7 +88,6 @@ public class PolinomScript : MonoBehaviour
             inputList2.Reverse();
             polinom2 = new Polinom(inputList2);
             myText2.text = polinom2.ToString();
-            //FieldValue2.text=""; //- clear the field
         }
         else
         {
@@ -101,7 +100,6 @@ public class PolinomScript : MonoBehaviour
     {
         rezultat = (polinom1 + polinom2);
         rezultText.text = rezultat.ToString();
-        // Debug.Log("Adunare: " + (polinom1 + polinom2));
     }
     //scadere
     public void ShowScadere()
@@ -133,7 +131,6 @@ public class PolinomScript : MonoBehaviour
     {
         rezultat = polinom1.Integrare();
         rezultText.text = rezultat.ToString();
-       // Debug.Log("Integrare: " + (polinom1.Integrare()));
     }
     public void ShowIntegrareP2()
     {
@@ -167,7 +164,7 @@ public class PolinomScript : MonoBehaviour
         valueR.gameObject.SetActive(true);
 
     }
-    //activeaza input field pt a introduce valoare+ calcul polinom in punctul dat
+ 
     public void ShowValueP1()
     {
         value1.gameObject.SetActive(true);
@@ -235,7 +232,7 @@ public class PolinomScript : MonoBehaviour
 
     }
 
-    //grafic functions
+    //grafic function
     public void PlotChart(Polinom polinom)
     {
         
