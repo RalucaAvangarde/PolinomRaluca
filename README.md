@@ -6,12 +6,12 @@ The solution of the problem is composed of two scripts, PolinomScript which deri
 	[4 2 0] => 4*x^2 + 2 * x^1 + 0 * x^0, and also allows me to write:
 	print(a) instead of print(a.toString()) where ‘a’ is an instance of Polinom class.
 	The methods for Polinom class allow us to perform operations like:
-GetPolinomValue in a specific point
-Addition of 2 polinoms
-Difference of 2 polinoms
-Multiply 2 polinoms
-Derive 2 polinoms
-Integrate 2 polinoms
+GetPolinomValue in a specific point;
+Addition of 2 polinoms;
+Difference of 2 polinoms;
+Multiply 2 polinoms;
+Derive 2 polinoms;
+Integrate 2 polinoms.
 	
 For addition, difference and multiplication of 2 polinoms I decide to use C# operators overloading because is more human-readable and allows me to use the method much easy. For example, instead of doing something like this: a.SumWith(b) where a and b are polinoms, I can use it like : a + b, so, to overload an operator in C# the method needs to contain “static” keyword because it`s a method of “Polinom” class not of an instance of it, that means I can use it like Polinom A + Polinom B and i do not need to create another instance polinom C just for call the function like C.Sum(A,B).So, for the addition, In the body of the method I use 1 if statement that decide what polinom has the biggest “Grad” and save the coefficients of it in a list of double and after it in a for statement that runs from 0 to “maxGrad” of the polinom I have another if statement that decide if I still have elements in both of polinoms  I will add them and insert into result otherwise I will insert the element from the polinom with greatest “Grad”.
 	
