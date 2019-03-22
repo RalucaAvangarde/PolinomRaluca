@@ -58,7 +58,6 @@ public class Polinom
             {
                 result += (sign + "X");    
             }
-            
 
         }
         return result;
