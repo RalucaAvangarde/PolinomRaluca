@@ -60,43 +60,48 @@ public class PolinomScript : MonoBehaviour
     }
     public void ShowPolinom1()
     {
-
-        string str = fieldValue.text;
-        if (str != null)
+        try
         {
-            inputList.Clear();
-            inputList = (str.Trim().Split(null)).Select(Double.Parse).ToList();
-            inputList.Reverse();
-            polinom1 = new Polinom(inputList);
-            myText1.text = polinom1.ToString();
-            check1 = true;
-            //FieldValue.text = ""; - clear the field
+            string str = fieldValue.text;
+            if (str != null)
+            {
+                inputList.Clear();
+                inputList = (str.Trim().Split(null)).Select(Double.Parse).ToList();
+                inputList.Reverse();
+                polinom1 = new Polinom(inputList);
+                myText1.text = polinom1.ToString();
+                check1 = true;
+                //FieldValue.text = ""; - clear the field
+            }
+            
         }
-        else
-
+        catch(Exception)
         {
-            Debug.Log("Incorrect format");
+            Debug.LogError("Incorrect format");
         }
-
 
     }
 
     public void ShowPolinom2()
     {
-        string str2 = fieldValue2.text;
+        try
+        {
+            string str2 = fieldValue2.text;
 
-        if (str2 != null)
-        {
-            inputList2.Clear();
-            inputList2 = (str2.Trim().Split(null)).Select(Double.Parse).ToList();
-            inputList2.Reverse();
-            polinom2 = new Polinom(inputList2);
-            myText2.text = polinom2.ToString();
-            check2 = true;
+            if (str2 != null)
+            {
+                inputList2.Clear();
+                inputList2 = (str2.Trim().Split(null)).Select(Double.Parse).ToList();
+                inputList2.Reverse();
+                polinom2 = new Polinom(inputList2);
+                myText2.text = polinom2.ToString();
+                check2 = true;
+            }
+            
         }
-        else
+        catch(Exception)
         {
-            Debug.Log("Incorrect format");
+            Debug.LogError("Incorrect format");
         }
     }
 
