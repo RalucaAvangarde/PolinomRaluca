@@ -68,12 +68,12 @@ public class PolinomScript : MonoBehaviour
                 inputList.Reverse();
                 leftPolynomial = new Polinom(inputList);
                 myText1.text = leftPolynomial.ToString();
-               
+
                 //FieldValue.text = ""; - clear the field
             }
-            
+
         }
-        catch(Exception)
+        catch (Exception)
         {
             Debug.LogError("Incorrect format");
         }
@@ -93,11 +93,11 @@ public class PolinomScript : MonoBehaviour
                 inputList2.Reverse();
                 rightPolynomial = new Polinom(inputList2);
                 myText2.text = rightPolynomial.ToString();
-                
+
             }
-            
+
         }
-        catch(Exception)
+        catch (Exception)
         {
             Debug.LogError("Incorrect format");
         }
@@ -106,6 +106,7 @@ public class PolinomScript : MonoBehaviour
     //addition
     public void ShowAddition()
     {
+
         if (leftPolynomial.IsInitialized && rightPolynomial.IsInitialized)
         {
             rezultPolynomial = (leftPolynomial + rightPolynomial);
@@ -113,8 +114,11 @@ public class PolinomScript : MonoBehaviour
         }
         else
         {
-           Debug.Log("You need to have 2 polinomyals for this operation");
+            Debug.Log("You need to have 2 polinomyals for this operation");
         }
+
+
+
     }
     //substraction
     public void ShowSubstraction()
@@ -281,5 +285,5 @@ public class PolinomScript : MonoBehaviour
 
     }
 
-   
+
 }
