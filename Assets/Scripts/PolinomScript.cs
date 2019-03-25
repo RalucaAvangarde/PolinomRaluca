@@ -105,7 +105,7 @@ public class PolinomScript : MonoBehaviour
         }
     }
 
-    //adunare
+    //addition
     public void ShowAdunare()
     {
         if (check1 && check2)
@@ -118,7 +118,7 @@ public class PolinomScript : MonoBehaviour
             Debug.Log("You need to have 2 polinomyals for this operation");
         }
     }
-    //scadere
+    //substraction
     public void ShowScadere()
     {
         if (check1 && check2)
@@ -131,7 +131,7 @@ public class PolinomScript : MonoBehaviour
             Debug.Log("You need to have 2 polinomyals for this operation");
         }
     }
-    // inmultire
+    //  multiplication
     public void ShowInmultire()
     {
         if (check1 && check2)
@@ -145,7 +145,7 @@ public class PolinomScript : MonoBehaviour
         }
 
     }
-    //derivare
+    //derivation
     public void ShowDerivareP1()
     {
         rezultat = polinom1.Derivare();
@@ -156,7 +156,7 @@ public class PolinomScript : MonoBehaviour
         rezultat = polinom2.Derivare();
         rezultText.text = rezultat.ToString();
     }
-    //integrare
+    //integration
     public void ShowIntegrareP1()
     {
         rezultat = polinom1.Integrare();
@@ -169,18 +169,18 @@ public class PolinomScript : MonoBehaviour
         rezultText.text = rezultat.ToString();
     }
 
-    // integrare rezultat final
+    // final result integration
     public void IntegrareRezultat()
     {
         rezultText.text = rezultat.Integrare().ToString();
 
     }
-    // derivare rezultat final
+    // final result derivation
     public void DerivareRezultat()
     {
         rezultText.text = rezultat.Derivare().ToString();
     }
-    // valoare pt rezultat final
+    // final result value
     public void ValoareRezultat()
     {
         if (valueR.text != null)
@@ -235,7 +235,7 @@ public class PolinomScript : MonoBehaviour
             Debug.Log("Please insert a number!");
         }
     }
-    //Grafic
+    //chart
     public void GraficP1()
     {
         myImage.gameObject.SetActive(true);
@@ -263,7 +263,7 @@ public class PolinomScript : MonoBehaviour
 
     }
 
-    //grafic function
+    //graph function
     public void PlotChart(Polinom polinom)
     {
 

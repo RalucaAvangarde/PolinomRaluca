@@ -78,7 +78,7 @@ public class Polinom
         Debug.Log((ToString()));
     }
 
-    //adunare
+    //addition
     public static Polinom operator +(Polinom a, Polinom b)
     {
         var result = new Polinom();
@@ -117,7 +117,7 @@ public class Polinom
         return result;
     }
 
-    //scadere
+    //substraction
     public static Polinom operator -(Polinom a, Polinom b)
     {
         var result = new Polinom();
@@ -156,7 +156,7 @@ public class Polinom
 
         return result;
     }
-    //inmultire
+    // multiplication
     public static Polinom operator *(Polinom a, Polinom b)
     {
         var maxGrad = a.Grad + b.Grad + 2;                  //+2, for constants
@@ -175,8 +175,8 @@ public class Polinom
         return result;
     }
 
-    //derivare
-    //derivare (x^n)' = n*x^n-1
+    //derivation
+    // (x^n)' = n*x^n-1
     public Polinom Derivare()
     {
         var coeficientiRezultat = new double[Grad + 1];
