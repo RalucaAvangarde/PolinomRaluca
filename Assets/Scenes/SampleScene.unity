@@ -433,7 +433,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: DerivareRezultat
+        m_MethodName: DerivationRezult
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1110,7 +1110,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: IntegrareRezultat
+        m_MethodName: IntegrationRezult
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2219,7 +2219,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: ShowDerivareP2
+        m_MethodName: DerivationRightPolynomial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2995,7 +2995,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: ShowDerivareP1
+        m_MethodName: DerivationLeftPolynomial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3398,7 +3398,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: ShowPolinom1
+        m_MethodName: ShowLeftPolynomial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3849,7 +3849,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: ShowAdunare
+        m_MethodName: ShowAddition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4012,7 +4012,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: ShowScadere
+        m_MethodName: ShowSubstraction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4673,7 +4673,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: ShowIntegrareP2
+        m_MethodName: IntegrationRightPolynomial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5053,7 +5053,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: ShowPolinom2
+        m_MethodName: ShowRightPolynomial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5402,7 +5402,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: ShowIntegrareP1
+        m_MethodName: IntegrationLeftPolynomial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5848,7 +5848,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: ValoareRezultat
+        m_MethodName: ValueRezult
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6147,7 +6147,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1407335611}
-        m_MethodName: ShowInmultire
+        m_MethodName: ShowMultiplication
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

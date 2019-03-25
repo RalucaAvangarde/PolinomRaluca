@@ -33,23 +33,21 @@ public class PolinomScript : MonoBehaviour
     private Transform chartContainer;
     private List<double> inputList;
     private List<double> inputList2;
-    private Polinom rezultat;
-    private Polinom polinom1;
-    private Polinom polinom2;
-    private Polinom polinom;
-    private bool check1;
-    private bool check2;
+    private Polinom rezultPolynomial;
+    private Polinom leftPolynomial;
+    private Polinom rightPolynomial;
+    //private Polinom polinom;
 
     void Start()
     {
-        check1 = false;
-        check2 = false;
         inputList = new List<double>();
         inputList2 = new List<double>();
         fieldValue = fieldValue.GetComponent<InputField>();
         fieldValue2 = fieldValue2.GetComponent<InputField>();
         value1 = value1.GetComponent<InputField>();
         value2 = value2.GetComponent<InputField>();
+        leftPolynomial = new Polinom();
+        rightPolynomial = new Polinom();
     }
     private void Awake()
     {
@@ -58,7 +56,7 @@ public class PolinomScript : MonoBehaviour
         rezultText = rezultText.GetComponent<Text>();
 
     }
-    public void ShowPolinom1()
+    public void ShowLeftPolynomial()
     {
         try
         {
@@ -68,9 +66,9 @@ public class PolinomScript : MonoBehaviour
                 inputList.Clear();
                 inputList = (str.Trim().Split(null)).Select(Double.Parse).ToList();
                 inputList.Reverse();
-                polinom1 = new Polinom(inputList);
-                myText1.text = polinom1.ToString();
-                check1 = true;
+                leftPolynomial = new Polinom(inputList);
+                myText1.text = leftPolynomial.ToString();
+               
                 //FieldValue.text = ""; - clear the field
             }
             
@@ -82,7 +80,7 @@ public class PolinomScript : MonoBehaviour
 
     }
 
-    public void ShowPolinom2()
+    public void ShowRightPolynomial()
     {
         try
         {
@@ -93,9 +91,9 @@ public class PolinomScript : MonoBehaviour
                 inputList2.Clear();
                 inputList2 = (str2.Trim().Split(null)).Select(Double.Parse).ToList();
                 inputList2.Reverse();
-                polinom2 = new Polinom(inputList2);
-                myText2.text = polinom2.ToString();
-                check2 = true;
+                rightPolynomial = new Polinom(inputList2);
+                myText2.text = rightPolynomial.ToString();
+                
             }
             
         }
@@ -106,25 +104,25 @@ public class PolinomScript : MonoBehaviour
     }
 
     //addition
-    public void ShowAdunare()
+    public void ShowAddition()
     {
-        if (check1 && check2)
+        if (leftPolynomial.IsInitialized && rightPolynomial.IsInitialized)
         {
-            rezultat = (polinom1 + polinom2);
-            rezultText.text = rezultat.ToString();
+            rezultPolynomial = (leftPolynomial + rightPolynomial);
+            rezultText.text = rezultPolynomial.ToString();
         }
         else
         {
-            Debug.Log("You need to have 2 polinomyals for this operation");
+           Debug.Log("You need to have 2 polinomyals for this operation");
         }
     }
     //substraction
-    public void ShowScadere()
+    public void ShowSubstraction()
     {
-        if (check1 && check2)
+        if (leftPolynomial.IsInitialized && rightPolynomial.IsInitialized)
         {
-            rezultat = (polinom1 - polinom2);
-            rezultText.text = rezultat.ToString();
+            rezultPolynomial = (leftPolynomial - rightPolynomial);
+            rezultText.text = rezultPolynomial.ToString();
         }
         else
         {
@@ -132,12 +130,12 @@ public class PolinomScript : MonoBehaviour
         }
     }
     //  multiplication
-    public void ShowInmultire()
+    public void ShowMultiplication()
     {
-        if (check1 && check2)
+        if (leftPolynomial.IsInitialized && rightPolynomial.IsInitialized)
         {
-            rezultat = (polinom1 * polinom2);
-            rezultText.text = rezultat.ToString();
+            rezultPolynomial = (leftPolynomial * rightPolynomial);
+            rezultText.text = rezultPolynomial.ToString();
         }
         else
         {
@@ -146,47 +144,47 @@ public class PolinomScript : MonoBehaviour
 
     }
     //derivation
-    public void ShowDerivareP1()
+    public void DerivationLeftPolynomial()
     {
-        rezultat = polinom1.Derivare();
-        rezultText.text = rezultat.ToString();
+        rezultPolynomial = leftPolynomial.Derivare();
+        rezultText.text = rezultPolynomial.ToString();
     }
-    public void ShowDerivareP2()
+    public void DerivationRightPolynomial()
     {
-        rezultat = polinom2.Derivare();
-        rezultText.text = rezultat.ToString();
+        rezultPolynomial = rightPolynomial.Derivare();
+        rezultText.text = rezultPolynomial.ToString();
     }
     //integration
-    public void ShowIntegrareP1()
+    public void IntegrationLeftPolynomial()
     {
-        rezultat = polinom1.Integrare();
-        rezultText.text = rezultat.ToString();
+        rezultPolynomial = leftPolynomial.Integrare();
+        rezultText.text = rezultPolynomial.ToString();
 
     }
-    public void ShowIntegrareP2()
+    public void IntegrationRightPolynomial()
     {
-        rezultat = polinom2.Integrare();
-        rezultText.text = rezultat.ToString();
+        rezultPolynomial = rightPolynomial.Integrare();
+        rezultText.text = rezultPolynomial.ToString();
     }
 
     // final result integration
-    public void IntegrareRezultat()
+    public void IntegrationRezult()
     {
-        rezultText.text = rezultat.Integrare().ToString();
+        rezultText.text = rezultPolynomial.Integrare().ToString();
 
     }
     // final result derivation
-    public void DerivareRezultat()
+    public void DerivationRezult()
     {
-        rezultText.text = rezultat.Derivare().ToString();
+        rezultText.text = rezultPolynomial.Derivare().ToString();
     }
     // final result value
-    public void ValoareRezultat()
+    public void ValueRezult()
     {
         if (valueR.text != null)
         {
             double result = Double.Parse(valueR.text);
-            rezultText.text = rezultat.CalculeazaValoarea(result).ToString();
+            rezultText.text = rezultPolynomial.CalculeazaValoarea(result).ToString();
             valueR.gameObject.SetActive(false);
         }
     }
@@ -207,7 +205,7 @@ public class PolinomScript : MonoBehaviour
         if (value1.text != null)
         {
             double result = Double.Parse(value1.text);
-            rezultText.text = polinom1.CalculeazaValoarea(result).ToString();
+            rezultText.text = leftPolynomial.CalculeazaValoarea(result).ToString();
             value1.gameObject.SetActive(false);
             //Debug.Log("Valoarea Polinomului1 in punctul dat este: " + polinom1.CalculeazaValoarea(result));
         }
@@ -227,7 +225,7 @@ public class PolinomScript : MonoBehaviour
         if (value2.text != null)
         {
             int result = Int32.Parse(value2.text);
-            rezultText.text = polinom2.CalculeazaValoarea(result).ToString();
+            rezultText.text = rightPolynomial.CalculeazaValoarea(result).ToString();
             value2.gameObject.SetActive(false);
         }
         else
@@ -239,19 +237,19 @@ public class PolinomScript : MonoBehaviour
     public void GraficP1()
     {
         myImage.gameObject.SetActive(true);
-        PlotChart(polinom1);
+        PlotChart(leftPolynomial);
     }
 
     public void GraficP2()
     {
         myImage.gameObject.SetActive(true);
-        PlotChart(polinom2);
+        PlotChart(rightPolynomial);
 
     }
     public void GraficR()
     {
         myImage.gameObject.SetActive(true);
-        PlotChart(rezultat);
+        PlotChart(rezultPolynomial);
     }
     public void CloseGrafic()
     {
@@ -282,4 +280,6 @@ public class PolinomScript : MonoBehaviour
         }
 
     }
+
+   
 }

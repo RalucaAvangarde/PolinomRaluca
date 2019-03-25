@@ -7,12 +7,14 @@ public class Polinom
 {
     public List<double> Coeficienti { get; set; }
     public int Grad { get; set; }
+    public bool IsInitialized { get;}
 
     public Polinom(List<double> coeficienti)
     {
         Coeficienti = new List<double>();
         Coeficienti = coeficienti;
         Grad = Coeficienti.Count - 1;
+        IsInitialized = true;
     }
 
 
@@ -20,6 +22,7 @@ public class Polinom
     {
         Coeficienti = new List<double>();
         Grad = 0;
+        IsInitialized = false;
     }
 
     public override string ToString()
